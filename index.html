@@ -1,156 +1,464 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Patan Durbar Square — A Digital Guide</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Patan Durbar Square | Heritage Story</title>
 
-  <!-- Typography -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Theme color for mobile browsers -->
-  <meta name="theme-color" content="#B85A3F">
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500&display=swap"
+    rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      scroll-behavior: smooth;
+      background-color: #fdf8f3;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: 'Playfair Display', serif;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(15px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .bg-parchment {
+      background-color: #f9f3ea;
+    }
+
+    /* Mobile-friendly buttons */
+    .lang-btn {
+      width: 120px;
+      height: 120px;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-fadeIn {
+      animation: fadeIn 1s ease forwards;
+    }
+
+    .animate-slideUp {
+      animation: slideUp 0.8s ease forwards;
+    }
+
+    .animate-delay-100 {
+      animation-delay: 0.1s;
+    }
+
+    .animate-delay-200 {
+      animation-delay: 0.2s;
+    }
+
+    .animate-delay-300 {
+      animation-delay: 0.3s;
+    }
+
+    .animate-delay-400 {
+      animation-delay: 0.4s;
+    }
+
+    .animate-delay-500 {
+      animation-delay: 0.5s;
+    }
+  </style>
 </head>
-<body>
-  <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- Language selection overlay shown on QR open -->
-  <div id="lang-screen" class="panel" aria-labelledby="lang-title" role="dialog" aria-modal="true">
-    <div class="panel-inner">
-      <h1 id="lang-title" class="brand">
-        Welcome to Patan
-        <small class="sub">Select a language / भाषा छान्नुहोस्</small>
-      </h1>
-
-      <p class="lead">Choose your language to begin the story of Patan Durbar Square.</p>
-
-      <div id="lang-list" class="lang-list" role="list">
-        <!-- Each button has a small flag/icon and accessible label -->
-        <button class="lang-btn" data-lang="en" data-label="English" aria-label="English" role="listitem">
-          <!-- UK/EN flag (simplified SVG) -->
-          <svg class="flag" viewBox="0 0 64 48" aria-hidden="true"><rect width="64" height="48" fill="#012169"/><path d="M0 0 L64 48 M64 0 L0 48" stroke="#fff" stroke-width="6"/><path d="M0 0 L64 48 M64 0 L0 48" stroke="#C8102E" stroke-width="3"/></svg>
-          <span class="lang-name">English</span>
-        </button>
-
-        <button class="lang-btn" data-lang="ne" data-label="नेपाली" aria-label="नेपाली" role="listitem">
-          <!-- Nepal flag simplified -->
-          <svg class="flag" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" fill="#fff"/><path d="M8 8 L56 32 L8 56 Z" fill="#c8102e"/><circle cx="20" cy="26" r="4" fill="#fff"/><path d="M20 34 a8 8 0 0 1 0 0" fill="#fff"/></svg>
-          <span class="lang-name">नेपाली</span>
-        </button>
-
-        <button class="lang-btn" data-lang="newa" data-label="Newari" aria-label="Newari" role="listitem">
-          <!-- Newari / cultural mandala icon -->
-          <svg class="flag" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="28" fill="#f6e8d6"/><path d="M32 12 L36 28 L52 32 L36 36 L32 52 L28 36 L12 32 L28 28 Z" fill="#b85a3f"/></svg>
-          <span class="lang-name">Newari</span>
-        </button>
-
-        <button class="lang-btn" data-lang="hi" data-label="हिन्दी" aria-label="हिन्दी" role="listitem">
-          <!-- India flag simplified -->
-          <svg class="flag" viewBox="0 0 64 48" aria-hidden="true"><rect width="64" height="16" y="0" fill="#FF9933"/><rect width="64" height="16" y="16" fill="#fff"/><rect width="64" height="16" y="32" fill="#138808"/><circle cx="32" cy="24" r="4" fill="#0A47A1"/></svg>
-          <span class="lang-name">हिन्दी</span>
-        </button>
-
-        <button class="lang-btn" data-lang="zh" data-label="中文" aria-label="中文" role="listitem">
-          <!-- China flag -->
-          <svg class="flag" viewBox="0 0 64 48" aria-hidden="true"><rect width="64" height="48" fill="#DE2910"/><polygon points="10,8 12.5,12 8,12 14,16 10,8" fill="#FFDE00"/></svg>
-          <span class="lang-name">中文</span>
-        </button>
-      </div>
-
-      <p class="hint">Tap or press Enter to continue</p>
+<body class="text-gray-800">
+<!-- Language Selection Popup -->
+<div id="language-popup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+  <div class="bg-parchment rounded-2xl shadow-xl p-6 max-w-md w-full text-center animate-fadeIn">
+    <h1 class="text-3xl sm:text-4xl font-bold mb-6 text-[#8B4513]">Choose Your Language</h1>
+    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+      <button class="lang-btn flex flex-col items-center justify-center bg-white hover:bg-[#f3e0c2] rounded-xl shadow-lg p-4 transition transform hover:scale-105" data-lang="en">
+        🇬🇧 <span class="mt-2 font-medium text-sm sm:text-base">English</span>
+      </button>
+      <button class="lang-btn flex flex-col items-center justify-center bg-white hover:bg-[#f3e0c2] rounded-xl shadow-lg p-4 transition transform hover:scale-105" data-lang="np">
+        🇳🇵 <span class="mt-2 font-medium text-sm sm:text-base">Nepali</span>
+      </button>
+      <button class="lang-btn flex flex-col items-center justify-center bg-white hover:bg-[#f3e0c2] rounded-xl shadow-lg p-4 transition transform hover:scale-105" data-lang="new">
+        🛕 <span class="mt-2 font-medium text-sm sm:text-base">Newari</span>
+      </button>
+      <button class="lang-btn flex flex-col items-center justify-center bg-white hover:bg-[#f3e0c2] rounded-xl shadow-lg p-4 transition transform hover:scale-105" data-lang="hi">
+        🇮🇳 <span class="mt-2 font-medium text-sm sm:text-base">Hindi</span>
+      </button>
+      <button class="lang-btn flex flex-col items-center justify-center bg-white hover:bg-[#f3e0c2] rounded-xl shadow-lg p-4 transition transform hover:scale-105" data-lang="cn">
+        🇨🇳 <span class="mt-2 font-medium text-sm sm:text-base">Chinese</span>
+      </button>
     </div>
   </div>
+</div>
 
-  <!-- Main content (hidden at first) -->
-  <main id="main" class="content" tabindex="-1" aria-live="polite" hidden>
-    <header class="hero" role="banner">
-      <div class="hero-over" aria-hidden="true"></div>
+<!-- Main Site Header -->
+<header id="main-header" class="hidden bg-[#8B4513] text-white py-6 shadow-md">
+  <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between">
+    <h1 class="text-3xl sm:text-4xl font-serif font-bold animate-slideUp text-center sm:text-left">
+      Patan Durbar Square Heritage
+    </h1>
+    <nav class="mt-4 sm:mt-0 flex flex-wrap justify-center sm:justify-end gap-4 text-sm sm:text-base">
+      <a href="#story-section" class="hover:text-[#FFD700] transition-colors">History</a>
+      <a href="#highlights" class="hover:text-[#FFD700] transition-colors">Highlights</a>
+      <a href="#timeline" class="hover:text-[#FFD700] transition-colors">Timeline</a>
+      <a href="#visitor-tips" class="hover:text-[#FFD700] transition-colors">Visitor Tips</a>
+    </nav>
+  </div>
+</header>
 
-      <div class="hero-inner">
-        <h2 class="title">Patan Durbar Square</h2>
-        <p class="subtitle">A living canvas of Newar craftsmanship, temples, and timeless stone.</p>
+  <section id="story-section" class="hidden bg-parchment">
+
+    <!-- Hero Section -->
+    <div class="relative overflow-hidden h-[50vh] sm:h-[60vh]">
+      <img src="images/architecture.jpg" alt="Patan Durbar Square" class="w-full h-full object-cover animate-fadeIn">
+      <div class="absolute inset-0 bg-gradient-to-t from-black/60 flex flex-col justify-end p-6 sm:p-12">
+        <h2 class="text-[#FFD700] text-3xl sm:text-4xl font-serif font-bold drop-shadow-lg animate-slideUp">Patan Durbar
+          Square</h2>
+        <p class="text-[#FFE8B0] mt-2 sm:mt-4 text-sm sm:text-base animate-slideUp animate-delay-100">
+          Scan to Explore its History & Art
+        </p>
       </div>
-    </header>
+    </div>
 
-    <section class="story" id="story" aria-labelledby="story-heading">
-      <h3 id="story-heading" class="section-title">A brief story</h3>
+    <div class="max-w-xl sm:max-w-4xl mx-auto px-4 py-8 space-y-12">
 
-      <!-- Decorative divider (mandala) -->
-      <div class="divider" aria-hidden="true">
-        <svg viewBox="0 0 100 20" class="mandala"><circle cx="10" cy="10" r="8"/><circle cx="30" cy="10" r="5"/><circle cx="50" cy="10" r="3"/></svg>
-      </div>
-
-      <article class="copy">
-        <p class="fade-in">Patan Durbar Square, in the heart of Lalitpur, is a masterpiece of Newar architecture and craftsmanship. For centuries, its palaces, courtyards and temples have been a centre of artistic expression where wood, stone, and metal were used with exquisite skill.</p>
-
-        <p class="fade-in delay-1">The square grew around the royal palace of the Malla kings and became a hub for artisans who created intricate carvings, finely cast bronze sculptures, and delicate lattice windows. Each courtyard tells a story — of devotion, trade, and evolving styles.</p>
-
-        <p class="fade-in delay-2">Local festivals, rituals and daily life continue to animate the space. Bells chime in the breeze; craftsmen still carve and polish; and visitors are invited to listen closely and learn how built heritage holds the memory of a community.</p>
-      </article>
-
-      <!-- Gallery with parallax images -->
-      <div class="gallery" id="gallery" aria-label="Images of Patan Durbar Square">
-        <!-- image elements — data-speed controls parallax -->
-        <figure class="photo" data-speed="0.18">
-          <img src="images/patan1.jpg" alt="Golden temple detail at Patan Durbar Square" loading="lazy">
-          <figcaption>Temple carvings & gilded details</figcaption>
-        </figure>
-
-        <figure class="photo" data-speed="0.12">
-          <img src="images/patan2.jpg" alt="Wide shot of Patan Durbar Square with visitors" loading="lazy">
-          <figcaption>The square: court, temples, and life</figcaption>
-        </figure>
-
-        <figure class="photo" data-speed="0.22">
-          <img src="images/patan3.jpg" alt="Closeup of carved wooden window lattice" loading="lazy">
-          <figcaption>Delicate wood latticework (tānsu)</figcaption>
-        </figure>
-
-        <figure class="photo" data-speed="0.15">
-          <img src="images/patan4.jpg" alt="Bronze sculpture of a deity at Patan" loading="lazy">
-          <figcaption>Bronze casting: tradition & ritual</figcaption>
-        </figure>
-
-        <figure class="photo" data-speed="0.20">
-          <img src="images/patan5.jpg" alt="Stone steps and courtyard in the palace complex" loading="lazy">
-          <figcaption>Palace courtyards and stone masonry</figcaption>
-        </figure>
-
-        <figure class="photo" data-speed="0.10">
-          <img src="images/patan6.jpg" alt="Festive ceremony with lamps and local dress" loading="lazy">
-          <figcaption>Festival life and ritual</figcaption>
-        </figure>
-
-        <!-- Optional extras -->
-        <figure class="photo" data-speed="0.16">
-          <img src="images/patan7.jpg" alt="Closeup of a temple roofline silhouette at sunset" loading="lazy">
-          <figcaption>Rooflines against the sky</figcaption>
-        </figure>
-
-        <figure class="photo" data-speed="0.14">
-          <img src="images/patan8.jpg" alt="Artisans working on a wood carving" loading="lazy">
-          <figcaption>Living crafts: artisans at work</figcaption>
-        </figure>
+      <!-- Section 1: Introduction -->
+      <div class="space-y-4 animate-fadeIn">
+        <h3 class="text-2xl font-serif font-bold mb-2 text-[#8B4513]">Welcome to Your Guided Tour</h3>
+        <p class="text-base sm:text-lg leading-relaxed text-[#5A3E36]">
+          Patan Durbar Square is a UNESCO World Heritage Site in Lalitpur, Nepal. Built during the Malla period, it
+          represents centuries of cultural, artistic, and religious traditions.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-[#5A3E36]">
+          The square contains palaces, temples, statues, and courtyards, showcasing exquisite Newar craftsmanship.
+          Visitors scanning this QR code can explore the rich history and architecture in detail.
+        </p>
       </div>
 
-      <aside class="facts" aria-labelledby="facts-heading">
-        <h4 id="facts-heading">Quick facts</h4>
-        <ul>
-          <li><strong>Founded:</strong> Centuries — flourished under Malla kings</li>
-          <li><strong>Style:</strong> Newar architecture, tiered temples, intricate woodwork</li>
-          <li><strong>Why visit:</strong> Live craftsmanship, monuments & cultural festivals</li>
+      <!-- Section 1a: Cultural Background - Unique Image Layout -->
+
+      <div class="relative flex flex-col justify-center gap-4 p-4 sm:p-6 rounded-xl shadow-lg bg-[#FFF8F0]">
+        <h4 class="font-serif font-bold text-2xl sm:text-3xl text-[#8B0000] mb-2">A Glimpse into Newar Culture</h4>
+        <p class="text-[#5A3E36] text-sm sm:text-base leading-relaxed">
+          The Newar community is the heart of Patan’s rich artistic heritage. Every temple, courtyard, and carving
+          tells stories of devotion, royalty, and craftsmanship passed through generations.
+          Explore temples, statues, and daily life through centuries-old artistry that still resonates today.
+        </p>
+        <div class="relative mt-4 rounded-xl overflow-hidden shadow-lg">
+          <img src="images/temple7.jpg" alt="Cultural Festival"
+            class="w-full h-56 object-cover hover:scale-105 transition">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/40 flex items-end p-4">
+            <p class="text-white font-serif font-semibold text-base sm:text-lg">Festivals & Community Life</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Quick Facts / Guided KPIs -->
+      <div class="space-y-6 animate-fadeIn">
+        <h3 class="text-2xl font-serif font-bold mb-4 animate-slideUp text-[#8B4513]">Your Guide’s Quick Insights</h3>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+
+          <!-- Card 1: Founder -->
+          <div
+            class="relative rounded-xl shadow-lg p-6 flex flex-col items-center text-center hover:scale-105 transition animate-slideUp overflow-hidden bg-[#FFF8F0]">
+            <img src="images/architecture5.jpg" class="absolute inset-0 w-full h-full object-cover opacity-10"
+              alt="Architecture Background">
+            <i class="fa-solid fa-crown text-4xl text-[#D2691E] mb-2 relative z-10"></i>
+            <h4 class="text-lg font-serif font-semibold mb-1 relative z-10 text-[#8B0000]">Founder</h4>
+            <p class="text-sm sm:text-base text-[#5A3E36] relative z-10">
+              King Siddhi Narsingh Malla, the visionary who transformed Patan into a thriving cultural hub.
+            </p>
+          </div>
+
+          <!-- Card 2: Established -->
+          <div
+            class="relative rounded-xl shadow-lg p-6 flex flex-col items-center text-center hover:scale-105 transition animate-slideUp animate-delay-100 overflow-hidden bg-[#FFF8F0]">
+            <img src="images/architecture5.jpg" class="absolute inset-0 w-full h-full object-cover opacity-10"
+              alt="Architecture Background">
+            <i class="fa-solid fa-calendar-days text-4xl text-[#D2691E] mb-2 relative z-10"></i>
+            <h4 class="text-lg font-serif font-semibold mb-1 relative z-10 text-[#8B0000]">Established</h4>
+            <p class="text-sm sm:text-base text-[#5A3E36] relative z-10">
+              Began in the 12th century, with major expansions between the 17th and 18th centuries.
+            </p>
+          </div>
+
+          <!-- Card 3: Cultural Significance -->
+          <div
+            class="relative rounded-xl shadow-lg p-6 flex flex-col items-center text-center hover:scale-105 transition animate-slideUp animate-delay-200 overflow-hidden bg-[#FFF8F0]">
+            <img src="images/architecture5.jpg" class="absolute inset-0 w-full h-full object-cover opacity-10"
+              alt="Architecture Background">
+            <i class="fa-solid fa-landmark text-4xl text-[#D2691E] mb-2 relative z-10"></i>
+            <h4 class="text-lg font-serif font-semibold mb-1 relative z-10 text-[#8B0000]">Cultural Significance</h4>
+            <p class="text-sm sm:text-base text-[#5A3E36] relative z-10">
+              Heart of Newar art and architecture; UNESCO World Heritage Site since 1979.
+            </p>
+          </div>
+
+          <!-- Card 4: Royal Courtyards -->
+          <div
+            class="relative rounded-xl shadow-lg p-6 flex flex-col items-center text-center hover:scale-105 transition animate-slideUp animate-delay-300 overflow-hidden bg-[#FFF8F0]">
+            <img src="images/architecture5.jpg" class="absolute inset-0 w-full h-full object-cover opacity-10"
+              alt="Architecture Background">
+            <i class="fa-solid fa-building-columns text-4xl text-[#D2691E] mb-2 relative z-10"></i>
+            <h4 class="text-lg font-serif font-semibold mb-1 relative z-10 text-[#8B0000]">Royal Courtyards</h4>
+            <p class="text-sm sm:text-base text-[#5A3E36] relative z-10">
+              Seven main courtyards once hosted ceremonies, festivals, and daily palace life.
+            </p>
+          </div>
+
+          <!-- Card 5: Artisan Legacy -->
+          <div
+            class="relative rounded-xl shadow-lg p-6 flex flex-col items-center text-center hover:scale-105 transition animate-slideUp animate-delay-400 overflow-hidden bg-[#FFF8F0]">
+            <img src="images/architecture5.jpg" class="absolute inset-0 w-full h-full object-cover opacity-10"
+              alt="Architecture Background">
+            <i class="fa-solid fa-mask text-4xl text-[#D2691E] mb-2 relative z-10"></i>
+            <h4 class="text-lg font-serif font-semibold mb-1 relative z-10 text-[#8B0000]">Artisan Legacy</h4>
+            <p class="text-sm sm:text-base text-[#5A3E36] relative z-10">
+              Over 400 sculptures and carvings narrate the lives of gods, kings, and common folk.
+            </p>
+          </div>
+
+          <!-- Card 6: Festivals & Events -->
+          <div
+            class="relative rounded-xl shadow-lg p-6 flex flex-col items-center text-center hover:scale-105 transition animate-slideUp animate-delay-500 overflow-hidden bg-[#FFF8F0]">
+            <img src="images/architecture5.jpg" class="absolute inset-0 w-full h-full object-cover opacity-10"
+              alt="Architecture Background">
+            <i class="fa-solid fa-gifts text-4xl text-[#D2691E] mb-2 relative z-10"></i>
+            <h4 class="text-lg font-serif font-semibold mb-1 relative z-10 text-[#8B0000]">Festivals & Events</h4>
+            <p class="text-sm sm:text-base text-[#5A3E36] relative z-10">
+              Witness colorful rituals like Rato Machhindranath Jatra, bringing the square to life.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Story Through Images -->
+      <div class="mt-12 animate-fadeIn">
+        <h3 class="text-2xl font-serif font-bold mb-6 animate-slideUp text-[#8B4513]">A Journey Through Patan Durbar
+          Square</h3>
+
+        <div class="overflow-x-auto flex gap-4 py-2">
+          <!-- Image Card 1 -->
+          <div
+            class="flex-shrink-0 w-64 bg-white rounded-xl shadow-lg overflow-hidden hover:scale-105 transition animate-slideUp">
+            <img src="images/architecture2.jpg" alt="Patan Palace" class="w-full h-40 object-cover">
+            <div class="p-4">
+              <h4 class="font-serif font-semibold text-lg text-[#8B0000]">Royal Palace Facade</h4>
+              <p class="text-sm text-[#5A3E36] mt-1">
+                The grand palace once housed the Malla kings and is adorned with delicate wood carvings narrating royal
+                tales.
+              </p>
+            </div>
+          </div>
+
+          <!-- Image Card 2 -->
+          <div
+            class="flex-shrink-0 w-64 bg-white rounded-xl shadow-lg overflow-hidden hover:scale-105 transition animate-slideUp animate-delay-100">
+            <img src="images/architecture3.jpg" alt="Krishna Mandir" class="w-full h-40 object-cover">
+            <div class="p-4">
+              <h4 class="font-serif font-semibold text-lg text-[#8B0000]">Krishna Mandir</h4>
+              <p class="text-sm text-[#5A3E36] mt-1">
+                Built entirely in stone, this Shikhara-style temple is an architectural marvel and center of worship.
+              </p>
+            </div>
+          </div>
+
+          <!-- Image Card 3 -->
+          <div
+            class="flex-shrink-0 w-64 bg-white rounded-xl shadow-lg overflow-hidden hover:scale-105 transition animate-slideUp animate-delay-200">
+            <img src="images/temple.jpg" alt="Temple Courtyard" class="w-full h-40 object-cover">
+            <div class="p-4">
+              <h4 class="font-serif font-semibold text-lg text-[#8B0000]">Hidden Courtyards</h4>
+              <p class="text-sm text-[#5A3E36] mt-1">
+                Discover secluded courtyards lined with shrines, fountains, and traditional Newar homes.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Highlights to Explore -->
+      <div class="space-y-6 animate-fadeIn">
+        <h3 class="text-2xl font-serif font-bold mb-4 text-[#8B4513]">Highlights to Explore</h3>
+        <ul class="space-y-4">
+          <li class="flex gap-4 items-start animate-slideUp animate-delay-100">
+            <img src="images/statue.jpg" alt="Stone Sculptures"
+              class="w-14 h-14 object-cover rounded-full shadow-md mt-1">
+            <div>
+              <h4 class="font-serif font-semibold text-base sm:text-lg text-[#8B0000]">Stone Sculptures</h4>
+              <p class="text-sm sm:text-base text-[#5A3E36]">Over 400 intricately carved statues representing religious
+                and cultural stories.</p>
+            </div>
+          </li>
+          <li class="flex gap-4 items-start animate-slideUp animate-delay-200">
+            <img src="images/courtyard.jpg" alt="Royal Courtyards"
+              class="w-14 h-14 object-cover rounded-full shadow-md mt-1">
+            <div>
+              <h4 class="font-serif font-semibold text-base sm:text-lg text-[#8B0000]">Royal Courtyards</h4>
+              <p class="text-sm sm:text-base text-[#5A3E36]">Seven main courtyards where rituals, festivals, and royal
+                ceremonies were held.</p>
+            </div>
+          </li>
+          <li class="flex gap-4 items-start animate-slideUp animate-delay-300">
+            <img src="images/temple2.jpg" alt="Krishna Mandir"
+              class="w-14 h-14 object-cover rounded-full shadow-md mt-1">
+            <div>
+              <h4 class="font-serif font-semibold text-base sm:text-lg text-[#8B0000]">Krishna Mandir</h4>
+              <p class="text-sm sm:text-base text-[#5A3E36]">Built entirely in stone with no nails, a testament to Newar
+                craftsmanship.</p>
+            </div>
+          </li>
         </ul>
-      </aside>
+      </div>
 
-    </section>
+      <!-- Section 5: Cultural Background - Unique Image Layout -->
+      <div class="relative grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8 animate-slideUp">
 
-    <footer class="site-footer" role="contentinfo">
-      <p>© 2025 Patan Museum | Scan for more stories</p>
-    </footer>
-  </main>
+        <div class="relative overflow-hidden rounded-xl shadow-lg">
+          <img src="images/temple6.jpg" alt="Newar Temple Detail"
+            class="w-full h-56 sm:h-64 object-cover hover:scale-105 transition">
+          <div class="absolute inset-0 bg-black/30 flex items-end p-4">
+            <h4 class="text-white font-serif font-semibold text-lg sm:text-xl">Intricate Carvings</h4>
+          </div>
+        </div>
+        <div class="relative overflow-hidden rounded-xl shadow-lg">
+          <img src="images/statue.jpg" alt="Stone Sculpture"
+            class="w-full h-48 sm:h-56 object-cover hover:scale-105 transition">
+          <div class="absolute inset-0 bg-black/30 flex items-end p-4">
+            <h4 class="text-white font-serif font-semibold text-lg sm:text-xl">Stone Sculptures</h4>
+          </div>
+        </div>
+      </div>
 
-  <script src="script.js" defer></script>
+      <!-- Section 4: Fun Fact Highlight -->
+      <div class="mt-8 p-6 bg-[#FFF7E6] border-l-4 border-[#FFB74D] rounded-lg shadow-md animate-fadeIn">
+        <h4 class="text-xl font-serif font-bold mb-2 text-[#8B4513]">Did You Know?</h4>
+        <p class="text-sm sm:text-base italic text-[#5A3E36]">
+          Some of the stone guardians in Patan Durbar Square hide inscriptions revealing the names of the artisans who
+          created them centuries ago.
+        </p>
+      </div>
+
+      <!-- Section 6: Image Gallery with Cultural Background -->
+      <div class="mt-6 overflow-x-auto flex gap-2 py-2 animate-fadeIn bg-[#FFF8F0] p-2 rounded-xl shadow-inner">
+        <img src="images/temple6.jpg" alt="Temple View"
+          class="rounded-lg shadow-md w-48 h-48 object-cover flex-shrink-0 animate-slideUp">
+        <img src="images/temple7.jpg" alt="Temple Carving"
+          class="rounded-lg shadow-md w-48 h-48 object-cover flex-shrink-0 animate-slideUp animate-delay-100">
+        <img src="images/temple8.jpg" alt="Temple Courtyard"
+          class="rounded-lg shadow-md w-48 h-48 object-cover flex-shrink-0 animate-slideUp animate-delay-200">
+        <img src="images/temple9.jpg" alt="Temple Entrance"
+          class="rounded-lg shadow-md w-48 h-48 object-cover flex-shrink-0 animate-slideUp animate-delay-300">
+        <img src="images/temple10.jpg" alt="Temple Detail"
+          class="rounded-lg shadow-md w-48 h-48 object-cover flex-shrink-0 animate-slideUp animate-delay-400">
+      </div>
+
+      <!-- Section 7: Quick Timeline -->
+      <div class="mt-6 animate-fadeIn">
+        <h3 class="text-2xl font-serif font-bold mb-2">Quick Timeline</h3>
+        <ul class="list-disc list-inside text-sm sm:text-base space-y-2">
+          <li>12th Century: Earliest Newar settlements and small shrines.</li>
+          <li>17th Century: King Siddhi Narsingh Malla expands the palace; Krishna Mandir built.</li>
+          <li>18th Century: Sundari Chowk terracotta carvings added.</li>
+          <li>20th Century: Earthquake restorations and heritage conservation efforts.</li>
+        </ul>
+      </div>
+
+      <!-- Section 8: Visitor Tips / Fun Experiences -->
+      <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div
+          class="bg-white rounded-xl shadow-md p-4 flex flex-col items-center text-center animate-slideUp animate-delay-100">
+          <img src="images/photo-spot.png" class="w-12 h-12 mb-2" alt="Camera Icon">
+          <p class="text-sm">Best photo spots at sunrise/sunset.</p>
+        </div>
+        <div
+          class="bg-white rounded-xl shadow-md p-4 flex flex-col items-center text-center animate-slideUp animate-delay-200">
+          <img src="images/quiet-corner.png" class="w-12 h-12 mb-2" alt="Quiet Corner Icon">
+          <p class="text-sm">Hidden courtyards for peaceful reflection.</p>
+        </div>
+        <div
+          class="bg-white rounded-xl shadow-md p-4 flex flex-col items-center text-center animate-slideUp animate-delay-300">
+          <img src="images/festival.png" class="w-12 h-12 mb-2" alt="Festival Icon">
+          <p class="text-sm">Time your visit with Rato Machhindranath Jatra for performances.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Footer -->
+  <footer class="text-center py-6 border-t border-gray-300 text-sm bg-[#f7efe3]">
+    © 2025 Patan Museum | Scan for more stories
+  </footer>
+
+  <script>
+const langButtons = document.querySelectorAll('.lang-btn');
+const popup = document.getElementById('language-popup');
+const header = document.getElementById('main-header');
+const storySection = document.getElementById('story-section');
+
+langButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const lang = btn.dataset.lang;
+    localStorage.setItem('selectedLang', lang);
+
+    // Hide popup & show main content
+    popup.classList.add('hidden');
+    header.classList.remove('hidden');
+    storySection.classList.remove('hidden');
+
+    // Trigger fade-in animations
+    setTimeout(() => {
+      document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
+    }, 100);
+  });
+});
+
+// Auto-show previous selection
+const savedLang = localStorage.getItem('selectedLang');
+if (savedLang) {
+  popup.classList.add('hidden');
+  header.classList.remove('hidden');
+  storySection.classList.remove('hidden');
+  setTimeout(() => {
+    document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
+  }, 100);
+}
+
+  </script>
 </body>
+
 </html>
