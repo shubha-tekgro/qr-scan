@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Patan Durbar Square — A Digital Guide</title>
+
+  <!-- Typography -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- Theme color for mobile browsers -->
+  <meta name="theme-color" content="#B85A3F">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Language selection overlay shown on QR open -->
+  <div id="lang-screen" class="panel" aria-labelledby="lang-title" role="dialog" aria-modal="true">
+    <div class="panel-inner">
+      <h1 id="lang-title" class="brand">
+        Welcome to Patan
+        <small class="sub">Select a language / भाषा छान्नुहोस्</small>
+      </h1>
+
+      <p class="lead">Choose your language to begin the story of Patan Durbar Square.</p>
+
+      <div id="lang-list" class="lang-list" role="list">
+        <!-- Each button has a small flag/icon and accessible label -->
+        <button class="lang-btn" data-lang="en" data-label="English" aria-label="English" role="listitem">
+          <!-- UK/EN flag (simplified SVG) -->
+          <svg class="flag" viewBox="0 0 64 48" aria-hidden="true"><rect width="64" height="48" fill="#012169"/><path d="M0 0 L64 48 M64 0 L0 48" stroke="#fff" stroke-width="6"/><path d="M0 0 L64 48 M64 0 L0 48" stroke="#C8102E" stroke-width="3"/></svg>
+          <span class="lang-name">English</span>
+        </button>
+
+        <button class="lang-btn" data-lang="ne" data-label="नेपाली" aria-label="नेपाली" role="listitem">
+          <!-- Nepal flag simplified -->
+          <svg class="flag" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" fill="#fff"/><path d="M8 8 L56 32 L8 56 Z" fill="#c8102e"/><circle cx="20" cy="26" r="4" fill="#fff"/><path d="M20 34 a8 8 0 0 1 0 0" fill="#fff"/></svg>
+          <span class="lang-name">नेपाली</span>
+        </button>
+
+        <button class="lang-btn" data-lang="newa" data-label="Newari" aria-label="Newari" role="listitem">
+          <!-- Newari / cultural mandala icon -->
+          <svg class="flag" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="28" fill="#f6e8d6"/><path d="M32 12 L36 28 L52 32 L36 36 L32 52 L28 36 L12 32 L28 28 Z" fill="#b85a3f"/></svg>
+          <span class="lang-name">Newari</span>
+        </button>
+
+        <button class="lang-btn" data-lang="hi" data-label="हिन्दी" aria-label="हिन्दी" role="listitem">
+          <!-- India flag simplified -->
+          <svg class="flag" viewBox="0 0 64 48" aria-hidden="true"><rect width="64" height="16" y="0" fill="#FF9933"/><rect width="64" height="16" y="16" fill="#fff"/><rect width="64" height="16" y="32" fill="#138808"/><circle cx="32" cy="24" r="4" fill="#0A47A1"/></svg>
+          <span class="lang-name">हिन्दी</span>
+        </button>
+
+        <button class="lang-btn" data-lang="zh" data-label="中文" aria-label="中文" role="listitem">
+          <!-- China flag -->
+          <svg class="flag" viewBox="0 0 64 48" aria-hidden="true"><rect width="64" height="48" fill="#DE2910"/><polygon points="10,8 12.5,12 8,12 14,16 10,8" fill="#FFDE00"/></svg>
+          <span class="lang-name">中文</span>
+        </button>
+      </div>
+
+      <p class="hint">Tap or press Enter to continue</p>
+    </div>
+  </div>
+
+  <!-- Main content (hidden at first) -->
+  <main id="main" class="content" tabindex="-1" aria-live="polite" hidden>
+    <header class="hero" role="banner">
+      <div class="hero-over" aria-hidden="true"></div>
+
+      <div class="hero-inner">
+        <h2 class="title">Patan Durbar Square</h2>
+        <p class="subtitle">A living canvas of Newar craftsmanship, temples, and timeless stone.</p>
+      </div>
+    </header>
+
+    <section class="story" id="story" aria-labelledby="story-heading">
+      <h3 id="story-heading" class="section-title">A brief story</h3>
+
+      <!-- Decorative divider (mandala) -->
+      <div class="divider" aria-hidden="true">
+        <svg viewBox="0 0 100 20" class="mandala"><circle cx="10" cy="10" r="8"/><circle cx="30" cy="10" r="5"/><circle cx="50" cy="10" r="3"/></svg>
+      </div>
+
+      <article class="copy">
+        <p class="fade-in">Patan Durbar Square, in the heart of Lalitpur, is a masterpiece of Newar architecture and craftsmanship. For centuries, its palaces, courtyards and temples have been a centre of artistic expression where wood, stone, and metal were used with exquisite skill.</p>
+
+        <p class="fade-in delay-1">The square grew around the royal palace of the Malla kings and became a hub for artisans who created intricate carvings, finely cast bronze sculptures, and delicate lattice windows. Each courtyard tells a story — of devotion, trade, and evolving styles.</p>
+
+        <p class="fade-in delay-2">Local festivals, rituals and daily life continue to animate the space. Bells chime in the breeze; craftsmen still carve and polish; and visitors are invited to listen closely and learn how built heritage holds the memory of a community.</p>
+      </article>
+
+      <!-- Gallery with parallax images -->
+      <div class="gallery" id="gallery" aria-label="Images of Patan Durbar Square">
+        <!-- image elements — data-speed controls parallax -->
+        <figure class="photo" data-speed="0.18">
+          <img src="images/patan1.jpg" alt="Golden temple detail at Patan Durbar Square" loading="lazy">
+          <figcaption>Temple carvings & gilded details</figcaption>
+        </figure>
+
+        <figure class="photo" data-speed="0.12">
+          <img src="images/patan2.jpg" alt="Wide shot of Patan Durbar Square with visitors" loading="lazy">
+          <figcaption>The square: court, temples, and life</figcaption>
+        </figure>
+
+        <figure class="photo" data-speed="0.22">
+          <img src="images/patan3.jpg" alt="Closeup of carved wooden window lattice" loading="lazy">
+          <figcaption>Delicate wood latticework (tānsu)</figcaption>
+        </figure>
+
+        <figure class="photo" data-speed="0.15">
+          <img src="images/patan4.jpg" alt="Bronze sculpture of a deity at Patan" loading="lazy">
+          <figcaption>Bronze casting: tradition & ritual</figcaption>
+        </figure>
+
+        <figure class="photo" data-speed="0.20">
+          <img src="images/patan5.jpg" alt="Stone steps and courtyard in the palace complex" loading="lazy">
+          <figcaption>Palace courtyards and stone masonry</figcaption>
+        </figure>
+
+        <figure class="photo" data-speed="0.10">
+          <img src="images/patan6.jpg" alt="Festive ceremony with lamps and local dress" loading="lazy">
+          <figcaption>Festival life and ritual</figcaption>
+        </figure>
+
+        <!-- Optional extras -->
+        <figure class="photo" data-speed="0.16">
+          <img src="images/patan7.jpg" alt="Closeup of a temple roofline silhouette at sunset" loading="lazy">
+          <figcaption>Rooflines against the sky</figcaption>
+        </figure>
+
+        <figure class="photo" data-speed="0.14">
+          <img src="images/patan8.jpg" alt="Artisans working on a wood carving" loading="lazy">
+          <figcaption>Living crafts: artisans at work</figcaption>
+        </figure>
+      </div>
+
+      <aside class="facts" aria-labelledby="facts-heading">
+        <h4 id="facts-heading">Quick facts</h4>
+        <ul>
+          <li><strong>Founded:</strong> Centuries — flourished under Malla kings</li>
+          <li><strong>Style:</strong> Newar architecture, tiered temples, intricate woodwork</li>
+          <li><strong>Why visit:</strong> Live craftsmanship, monuments & cultural festivals</li>
+        </ul>
+      </aside>
+
+    </section>
+
+    <footer class="site-footer" role="contentinfo">
+      <p>© 2025 Patan Museum | Scan for more stories</p>
+    </footer>
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
